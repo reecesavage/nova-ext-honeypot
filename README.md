@@ -13,7 +13,6 @@ This extension requires:
 
 - Nova 2.6+
 - Nova Extension [`jquery`](https://github.com/jonmatterson/nova-ext-jquery)
-- Nova Mod [`parser_events`](https://github.com/jonmatterson/nova-mod-parser_events)
 
 ## Installation
 

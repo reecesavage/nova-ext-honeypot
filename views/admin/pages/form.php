@@ -1,0 +1,1 @@
+<input type="text" name="honey" class="honeypot"> 

@@ -7,7 +7,7 @@
  * @author		Anodyne Productions
  * @copyright	2013 Anodyne Productions
  */
-class __extensions__nova_ext_honeypot__Ajax extends CI_Controller {
+class __extensions__nova_ext_anti_spam_questions__Ajax extends CI_Controller {
 	
 	/**
 	 * Variable to store all the information about template regions
@@ -64,7 +64,7 @@ class __extensions__nova_ext_honeypot__Ajax extends CI_Controller {
             
             $data['text'] = sprintf(
                 lang('fbx_content_del_entry'),
-                'Setting',
+                'Setting',                 
                 ''
             );
             
@@ -83,7 +83,7 @@ class __extensions__nova_ext_honeypot__Ajax extends CI_Controller {
            
             
 
-            $this->_regions['content'] = Location::ajax('/../extensions/nova_ext_honeypot/views/admin/pages/del_setting', null, null, $data);
+            $this->_regions['content'] = Location::ajax('/../extensions/nova_ext_anti_spam_questions/views/admin/pages/del_setting', null, null, $data);
             $this->_regions['controls'] = form_button($data['inputs']['submit']).form_close();
             
             Template::assign($this->_regions);

@@ -1,5 +1,5 @@
 <?php
-namespace nova_ext_honeypot;
+namespace nova_ext_anti_spam_questions;
 
 
 class Installer {
@@ -23,7 +23,7 @@ function __construct() {
     $this->ci->load->model('menu_model');
 
 
-    $expectedLink = 'extensions/nova_ext_honeypot/Manage/index';
+    $expectedLink = 'extensions/nova_ext_anti_spam_questions/Manage/index';
     $cat = $this->ci->menu_model->get_menu_category( 'manageext' );
    
     if ( $cat === false ) {
@@ -39,12 +39,12 @@ function __construct() {
 
       // Add item
   
-
-      $query = $this->ci->db->get_where('menu_items', array('menu_name' => 'Form Setting'));
+     
+      $query = $this->ci->db->get_where('menu_items', array('menu_name' => 'Anti Spam Questions'));
     $item = ($query->num_rows() > 0) ? $query->row() : false;   
       if($item==false){
       $insertItem = $this->ci->menu_model->add_menu_item( [
-        'menu_name' => 'Form Setting',
+        'menu_name' => 'Anti Spam Questions',
         'menu_group' => 0,
         'menu_order' => 0,
         'menu_sim_type' => 1,

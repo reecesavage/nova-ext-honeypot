@@ -1,6 +1,6 @@
 <?php echo text_output($title, 'h1', 'page-head');?>
 
-<?php echo form_open('extensions/nova_ext_honeypot/Manage/create/');?>
+<?php echo form_open('extensions/nova_ext_anti_spam_questions/Manage/create/');?>
 	        <p>
 				<kbd>Question</kbd>
 				<textarea name="question" required rows="4"></textarea>	

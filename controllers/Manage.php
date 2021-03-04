@@ -2,7 +2,7 @@
 
 require_once MODPATH . 'core/libraries/Nova_controller_admin.php';
 
-class __extensions__nova_ext_honeypot__Manage extends Nova_controller_admin
+class __extensions__nova_ext_anti_spam_questions__Manage extends Nova_controller_admin
 {
     public function __construct()
     {
@@ -19,6 +19,38 @@ class __extensions__nova_ext_honeypot__Manage extends Nova_controller_admin
         
     }
 
+    public function writeControllerCode()
+  {   
+          
+        $extControllerPath = APPPATH.'controllers/main.php';
+        if ( !file_exists( $extControllerPath ) ) { 
+        return [];
+        }
+        $controllerFile = file_get_contents( $extControllerPath );
+        $pattern = '/protected\sfunction\scontact/';
+        if (!preg_match($pattern, $controllerFile)) {
+       $writeFilePath = dirname(__FILE__).'/../main.txt';
+        if ( !file_exists( $writeFilePath ) ) { 
+           return [];
+        }
+        $file = file_get_contents( $writeFilePath );
+
+       $contents = file($extControllerPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+      $size = count($contents);
+      $contents[$size-1] = "\n".$file;
+      $temp = implode("\n", $contents);
+
+     
+      file_put_contents($extControllerPath, $temp);
+         
+         return true;
+        }
+      return false;
+              
+
+
+  }
+
 
    
 
@@ -28,11 +60,55 @@ class __extensions__nova_ext_honeypot__Manage extends Nova_controller_admin
     {
           Auth::check_access('site/settings');
         $data['title'] = 'Manage Questions';
+      $data['write']=true;
 
+         $extControllerPath = APPPATH.'controllers/main.php';
+         
+        if ( !file_exists( $extControllerPath ) ) { 
+        return [];
+        }
+        $file = file_get_contents( $extControllerPath );
+        $pattern = '/protected\sfunction\scontact/';
+
+
+           if (!preg_match($pattern, $file)) {
+           $data['write']=false;
+
+        if(isset($_POST['submit']) && $_POST['submit']=='write')
+        {
+             
+            if($this->writeControllerCode())
+            {
+              $data['write']=true;
+                $message = sprintf(
+               lang('flash_success'),
+          // TODO: i18n...
+              'Controller',
+          lang('actions_added'),
+          ''
+        );
+            }else {
+                    $message = sprintf(
+               lang('flash_failure'),
+          // TODO: i18n...
+              'Controller',
+          lang('actions_added'),
+          ''
+        );
+            }
+         
+
+        $flash['status'] = 'success';
+        $flash['message'] = text_output($message);
+
+        $this->_regions['flash_message'] = Location::view('flash', $this->skin, 'admin', $flash);
+
+        }
+        }
+          
 
         if(isset($_POST['submit']) && $_POST['submit'] == 'Submit')
         {
-
 
              $id = $this->input->post('id', true);
         $id = (is_numeric($id)) ? $id : false;
@@ -78,13 +154,13 @@ class __extensions__nova_ext_honeypot__Manage extends Nova_controller_admin
         $this->db->where('setting_key', 'question');
         $query = $this->db->get();
         $data['models']= $query->result();
-       
+        
         $this->_regions['title'] .= 'Manage Questions';
 
 
-           $this->_regions['javascript'] .= $this->extension['nova_ext_honeypot']->inline_js('custom', 'admin', $data);
+           $this->_regions['javascript'] .= $this->extension['nova_ext_anti_spam_questions']->inline_js('custom', 'admin', $data);
 
-        $this->_regions['content'] = $this->extension['nova_ext_honeypot']
+        $this->_regions['content'] = $this->extension['nova_ext_anti_spam_questions']
             ->view('index', $this->skin, 'admin', $data);
 
         Template::assign($this->_regions);
@@ -129,16 +205,67 @@ class __extensions__nova_ext_honeypot__Manage extends Nova_controller_admin
 
            $this->_regions['title'] .= 'Create Questions';
 
-           $this->_regions['javascript'] .= $this->extension['nova_ext_honeypot']->inline_js('custom', 'admin', $data);
+           $this->_regions['javascript'] .= $this->extension['nova_ext_anti_spam_questions']->inline_js('custom', 'admin', $data);
 
-            $this->_regions['javascript'] .= $this->extension['nova_ext_honeypot']->inline_css('custom', 'admin', $data);
+            $this->_regions['javascript'] .= $this->extension['nova_ext_anti_spam_questions']->inline_css('custom', 'admin', $data);
 
-           $this->_regions['content'] = $this->extension['nova_ext_honeypot']
+           $this->_regions['content'] = $this->extension['nova_ext_anti_spam_questions']
             ->view('create', $this->skin, 'admin', $data);
 
         Template::assign($this->_regions);
         Template::render();
 
+    }
+
+
+    public function edit()
+    {
+         Auth::check_access('site/settings');
+
+            $data['title'] = 'Update Questions';
+
+        $id = $this->uri->segment(5);
+
+
+         
+      if (isset($_POST['submit']) && $_POST['submit'] == 'Submit')
+        {
+           
+            
+                $json['question']=$_POST['question'];
+                $json['answer']=$_POST['answer'];
+
+            $this->ci->settings->update_setting( $id,[
+                'setting_value' => json_encode( $json)
+            ],'setting_id' );
+
+
+
+             $message = sprintf(lang('flash_success') ,
+            // TODO: i18n...
+            'Question Updated successfully', '', '');
+
+            $flash['status'] = 'success';
+            $flash['message'] = text_output($message);
+
+            $this->_regions['flash_message'] = Location::view('flash', $this->skin, 'admin', $flash);
+
+        }
+
+         $query = $this->db->get_where('settings', array('setting_id' => $id));
+        $data['model'] = ($query->num_rows() > 0) ? $query->row() : false;
+
+           $this->_regions['title'] .= 'Update Questions';
+
+           $this->_regions['javascript'] .= $this->extension['nova_ext_anti_spam_questions']->inline_js('custom', 'admin', $data);
+
+            $this->_regions['javascript'] .= $this->extension['nova_ext_anti_spam_questions']->inline_css('custom', 'admin', $data);
+
+           $this->_regions['content'] = $this->extension['nova_ext_anti_spam_questions']
+            ->view('update', $this->skin, 'admin', $data);
+
+        Template::assign($this->_regions);
+        Template::render();
     }
 
 }

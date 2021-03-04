@@ -27,7 +27,7 @@ $(document).ready(function() {
      $("a[rel*=facebox]").click(function() {
 			var action = $(this).attr('myAction');
 			var id = $(this).attr('myID');
-			var location = '<?php echo site_url('extensions/nova_ext_honeypot/Ajax/del_setting/');?>/' + id;
+			var location = '<?php echo site_url('extensions/nova_ext_anti_spam_questions/Ajax/del_setting/');?>/' + id;
 			
 			$.facebox(function() {
 				$.get(location, function(data) {

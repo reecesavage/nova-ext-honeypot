@@ -17,10 +17,10 @@ This extension requires:
 ## Installation
 
 - Install Required Extensions.
-- Copy the entire directory into `applications/extensions/nova_ext_honeypot`.
-- Add the following to `application/config/extensions.php`: - Be sure the `jquery` line appears before `nova_ext_honeypot`
+- Copy the entire directory into `applications/extensions/nova_ext_anti_spam_questions`.
+- Add the following to `application/config/extensions.php`: - Be sure the `jquery` line appears before `nova_ext_anti_spam_questions`
 ```
-$config['extensions']['enabled'][] = 'nova_ext_honeypot';
+$config['extensions']['enabled'][] = 'nova_ext_anti_spam_questions';
 ```
 
 ## Issues

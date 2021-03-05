@@ -7,7 +7,7 @@ $(document).ready(function() {
 	 html+="<input type='text' name='answer[]' required value=''>";
 	 html+="</div>";
      html+="<div class='col s12 m2 l2'>";
-     html+="<a class='remove-more' data-id="+i+">Remove Rows</a>";
+     html+="<a class='remove-more' data-id="+i+">Remove Row</a>";
      html+="</div>";
      html+="</div>";
      i++;

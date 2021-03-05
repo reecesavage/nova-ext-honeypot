@@ -1,3 +1,4 @@
+
 public function contact()
 	{
 		// load the validation library
@@ -35,10 +36,18 @@ public function contact()
              	$jsonDecode=json_decode($model->setting_value,true);
 
 
-              $answer= $_POST['nova_ext_anti_spam_questions_answer'];
-      if(in_array($answer,$jsonDecode['answer']))
+              $answer= strtoupper($_POST['nova_ext_anti_spam_questions_answer']);
+               
+
+               $answerArray=[];
+              foreach ($jsonDecode['answer'] as $key => $value) {
+                    $answerArray[]= strtoupper($value);
+              }
+
+             
+            if(in_array($answer,$answerArray))
              	 {
-                      
+                    
 				$email = ($this->options['system_email'] == 'on') ? $this->_email('contact', $array) : false;
 
 				if ( ! $email)
@@ -69,15 +78,10 @@ public function contact()
 				$this->_regions['flash_message'] = Location::view('flash', $this->skin, 'main', $flash);
 			
              	 }else {
-                   $message = sprintf(
-						lang('flash_failure'),
-						'Security answer match',
-						'',
-						''
-					);
+                   
 
 					$flash['status'] = 'error';
-					$flash['message'] = text_output($message);
+					$flash['message'] = text_output('Security Answer did not match or was blank. Please try again.');
 					$this->_regions['flash_message'] = Location::view('flash', $this->skin, 'main', $flash);
              	 }
              }
@@ -219,8 +223,14 @@ public function contact()
              	$jsonDecode=json_decode($model->setting_value,true);
 
 
-              $answer= $_POST['nova_ext_anti_spam_questions_answer'];
-      if(in_array($answer,$jsonDecode['answer']))
+              $answer= strtoupper($_POST['nova_ext_anti_spam_questions_answer']);
+
+                $answerArray=[];
+              foreach ($jsonDecode['answer'] as $key => $value) {
+                    $answerArray[]= strtoupper($value);
+              }
+
+         if(in_array($answer,$answerArray))
              	 {
 
 
@@ -367,15 +377,10 @@ public function contact()
 				}else {
 
 					
-			      $message = sprintf(
-						lang('flash_failure'),
-						'Security answer match',
-						'',
-						''
-					);
+			    
 
 					$flash['status'] = 'error';
-					$flash['message'] = text_output($message);
+					$flash['message'] = text_output('Security Answer did not match or was blank. Please try again.');
 
 				}
 				}

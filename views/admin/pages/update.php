@@ -36,12 +36,12 @@
                 <?php if($key==0){ ?>
                 	 <div class="col s12 m2 l2">
              
-                  <a class="add-more">Add Rows</a>
+                  <a class="add-more">Add Row</a>
                 
              	</div>
              <?php  } else { ?>
                   <div class='col s12 m2 l2'>
-                  <a class='remove-more' data-id="<?=$i?>">Remove Rows</a>
+                  <a class='remove-more' data-id="<?=$i?>">Remove Row</a>
                  </div>
              <?php } ?>
              	

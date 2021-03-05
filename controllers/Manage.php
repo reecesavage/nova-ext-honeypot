@@ -27,7 +27,7 @@ class __extensions__nova_ext_anti_spam_questions__Manage extends Nova_controller
         return [];
         }
         $controllerFile = file_get_contents( $extControllerPath );
-        $pattern = '/protected\sfunction\scontact/';
+        $pattern = '/public\sfunction\scontact/';
         if (!preg_match($pattern, $controllerFile)) {
        $writeFilePath = dirname(__FILE__).'/../main.txt';
         if ( !file_exists( $writeFilePath ) ) { 
@@ -68,7 +68,7 @@ class __extensions__nova_ext_anti_spam_questions__Manage extends Nova_controller
         return [];
         }
         $file = file_get_contents( $extControllerPath );
-        $pattern = '/protected\sfunction\scontact/';
+        $pattern = '/public\sfunction\scontact/';
 
 
            if (!preg_match($pattern, $file)) {

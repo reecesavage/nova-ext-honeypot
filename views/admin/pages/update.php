@@ -1,5 +1,14 @@
 <?php echo text_output($title, 'h1', 'page-head');?>
 
+
+<p>
+<?php echo anchor('extensions/nova_ext_anti_spam_questions/Manage/index','« Back to Anti Spam Questions', array('class' => 'image'));?>
+</p>
+
+
+
+
+
 <?php echo form_open("extensions/nova_ext_anti_spam_questions/Manage/edit/$model->setting_id");?>
 
 <?php $jsonDecode=json_decode($model->setting_value,true)?>

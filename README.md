@@ -1,5 +1,5 @@
 # Anti Spam Questions - A [Nova](https://anodyne-productions.com/nova) Extension
-## Created for you by [Sim Central](https://sim-central.org)
+## Created for you by [Sim Central](https://simcentral.org)
 
 <p align="center">
   <a href="https://github.com/reecesavage/nova-ext-honeypot/releases/tag/v1.0.0"><img src="https://img.shields.io/badge/Version-v1.0.0-brightgreen.svg"></a>

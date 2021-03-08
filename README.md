@@ -37,7 +37,7 @@ Installation is now complete!
 - Choose Anti Spam Questions under Manage Extensions
 - Add, Remove, or Edit Quesions.
 - Answers are NOT case Sensitive, but remember to add all acceptable answers:
-	- Starship, USS Starship U.S.S. Starship
+	- Starship, USS Starship, U.S.S. Starship
 	- Seventeen, 17
 
 ### Manual Setup - If not using the method above.

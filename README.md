@@ -8,7 +8,7 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-red.svg"></a>
 </p>
 
-This extension allows the Game Manager to add questions to the Contact and Join forms for spambot prevention.
+This extension allows the Game Manager to add questions to the Contact and Join forms for spambot prevention. A question will be chosen at random on page load and displayed to the user.
 
 This extension requires:
 

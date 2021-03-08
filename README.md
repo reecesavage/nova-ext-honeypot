@@ -31,6 +31,15 @@ $config['extensions']['enabled'][] = 'nova_ext_anti_spam_questions';
 
 Installation is now complete!
 
+## Usage
+
+- Navigate to your Admin Control Panel
+- Choose Anti Spam Questions under Manage Extensions
+- Add, Remove, or Edit Quesions.
+- Answers are NOT case Sensitive, but remember to add all acceptable answers:
+* Starship, USS Starship U.S.S. Starship
+* Seventeen, 17
+
 ### Manual Setup - If not using the method above.
 
 - Add the following function in your `applications/controllers/main.php` file to overwrite `contact` and `join` functions. This will allow the email subject to include Post numbers before the Post title. 
@@ -633,15 +642,6 @@ public function contact()
 	}
 ```
 Installation is now complete!
-
-## Usage
-
-- Navigate to your Admin Control Panel
-- Choose Anti Spam Questions under Manage Extensions
-- Add, Remove, or Edit Quesions.
-- Answers are NOT case Sensitive, but remember to add all acceptable answers:
-* Starship, USS Starship U.S.S. Starship
-* Seventeen, 17
 
 ## Issues
 

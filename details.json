@@ -1,0 +1,19 @@
+{
+	"name": "Anti Spam Questions",
+	"version": "1.0.0",
+	"description": "This extension allows the Game Manager to add questions to the Contact and Join forms for spambot prevention. A question will be chosen at random on page load and displayed to the user.",
+	"url": "https://github.com/reecesavage/nova-ext-anti-spam-questions",
+	"author": {
+		"name": "Sim Central",
+		"email": "info@simcentral.org",
+		"url": "https://simcentral.org"
+	},
+	"folder": "nova_ext_anti_spam_questions",
+	"requiredExtensions": [
+		"jquery"
+	],
+	"configFiles": [
+		
+	],
+	"upgradeable": "yes"
+}

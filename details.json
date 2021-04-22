@@ -19,5 +19,7 @@
 	"replaceConfigFiles":"yes",
 	"incompatibleExtensions":[ 
             
+	],"uninstall":[ 
+          "application/controllers/main.php"  
 	]
 }
